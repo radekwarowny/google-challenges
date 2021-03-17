@@ -40,12 +40,17 @@ letters = {'a':'100000', 'b':'110000','c':'100100','d':'100110', 'e':'100010',
 capital = '000001'
 
 
-
-def word_to_braille(word, code):
-
+def solution(s):
+    letters = {'a':'100000', 'b':'110000','c':'100100','d':'100110', 'e':'100010',
+               'f':'110100','g':'110110','h':'110010','i':'010100', 'j':'010110',
+               'k':'101000','l':'111000','m':'101100','n':'101110','o':'101010',
+               'p':'111100','q':'111110', 'r':'111010','s':'011100','t':'011110',
+               'u':'101001','v':'111001','w':'010111','x':'101101','y':'101111', 'z':'101011'}
+    capital = '000001'
+    space = '000000'
     translation = []
 
-    for i in word:
+    for i in s:
         if i.isspace():
             translation.append(space)
         elif i.isupper() and (i.lower() in letters):
@@ -54,47 +59,11 @@ def word_to_braille(word, code):
         elif i in letters:
             translation.append(letters.get(i))
         else:
-            print("WRONG INPUT")
+            pass
+    string = ''.join(translation)
 
-    result = ''.join(translation)
+    return string
 
-    print("BRAILLE CHARACTERS: ",translation)
-    print("LEN OF BRAILLE: ",len(translation))
-    print("LEN OF WORD: ",len(word))
-
-    if result == braille:
-        print("\nWe have a match!")
-
-def braille_to_word(braille, word):
-    letters = {'a':'100000', 'b':'110000','c':'100100','d':'100110', 'e':'100010',
-                'f':'110100','g':'110110','h':'110010','i':'010100', 'j':'010110','k':'101000','l':'111000','m':'101110',
-                'n':'101110','o':'101010','p':'111100','q':'111110', 'r':'111010','s':'011100','t':'011110','u':'101001',
-                'v':'111001','w':'010111','x':'101101','y':'101111', 'z':'101011',' ':'000000'}
-
-    capital = '000001'
-
-    final = []
-    n = 6
-    code_split = [braille[i:i+6] for i in range(0,len(braille), n)]
- 
-    for i in code_split:
-        if i == capital:
-            final.append('!')
-        if i in letters.values() :
-            for key, value in letters.items():
-                if i == value:
-                    final.append(key)
-    print(final)
-
-    for i in final:
-        if i == '!':
-            final
-
-    
-   
-
-word = "Braille"
-braille = "000001110000111010100000010100111000111000100010"
-
-#word_to_braille(word, braille)
-braille_to_word(braille, word)
+print(solution("code"))
+print(solution("Braille"))
+print(solution("The quick brown fox jumpes over the lazy dog"))
